@@ -1,0 +1,57 @@
+﻿
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pizzeria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="~/css/site.css" rel="stylesheet" />
+    
+
+</head>
+
+<body>
+
+    <header class="container-fluid text-center bg-danger">
+        <div class="row">
+            <div class="col-5"></div>
+            <p class="col-2 fs-5 pt-3 fw-bold">Pizzeria Da Gigi</p>
+            <div class="col-5"></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h1 class="mt-3 mb-3">Lista Pizze</h1>
+                        <div>
+                            <input id="input_search" type="text" class="form-control" placeholder="Cerca una pizza.." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contenitore_no_pizze" class="row text-center d-none">
+                <div class="col-12">
+                    <h3>Non hai inserito niente!</h3>
+                </div>
+            </div>
+            <div id="contenitore_pizze" class="row d-none">
+            </div>
+        </div>
+    </header>
+      
+        
+
+       @RenderBody()
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
