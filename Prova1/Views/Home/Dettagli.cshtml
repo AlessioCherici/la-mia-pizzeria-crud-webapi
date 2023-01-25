@@ -1,13 +1,21 @@
 ﻿@{
-    Layout = "_LayoutAxios";
+    Layout = "LayoutAxios";  
 }
 
-@model Pizza
+<div id="descrizione-vuoto"> </div>
+<div id="descrizione"> </div>
 
+@section Scripts{
+    <script type="text/javascript">
+        function pizzaShower()
+        {
 
+        }
+    </script>
+ }
 <div class="col-12 col-md-6 col-lg-4">
     <div class="card mb-5 border">  
-        <img class="card-img-top img-fluid" src="@Model.Immagine" alt="@Model.Id">
+        <img class="card-img-top img-fluid" src="${pizza.immagine}" alt="@Model.Id">
         <div class="card-body pb-0">
             <h5 class="text-black text-center">@Model.Nome</h5>
         </div>
@@ -20,3 +28,5 @@
         </div>
     </div>
 </div>
+
+    

@@ -1,15 +1,25 @@
-﻿ @{
+﻿@{
     Layout = "LayoutAxios";
 }
-@model List<Pizza>
 
 
+<div class="container-fluid text-center bg-danger">
+<div class="row fs-1 fw-bolder">
+    <p>MENU'</p>
+</div>
+</div>
 
+<div id="contenitore_no_pizze" class="row text-center d-none">
+    <div class="col-12">
+        <h3>Non hai inserito niente!</h3>
+    </div>
+</div>
 
-        <div class="row fs-1 fw-bolder">
-            
-            <p>MENU'</p>
-        </div>
+<div id="contenitore_pizze" class="row d-none">
+
+</div>
+
+        
 
 
 @*    <main>
@@ -42,34 +52,36 @@
             <a href="@Url.Action("FormAddPizza","Home")" class="btn btn-warning fs-4 fw-bold">Aggiungi una Pizza!</a>
         </div>
 
-   
+
     </main>*@
 
 
 
-    @section Scripts {
+@section Scripts {
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            loadPizze();
+        loadPizze();
 
-            document.getElementById('input_search').addEventListener('keyup', searchPizza);
+        document.getElementById('input_search').addEventListener('keyup', searchPizzas);
 
 
-            function searchPizzas() {
-                let stringaDiRicerca = document.getElementById('input_search').value;
-                loadPizze(stringaDiRicerca);
-            }
-            function loadPizze(searchString) {
+        function searchPizzas() {
+            let stringaDiRicerca = document.getElementById('input_search').value;
+            debugger;
+            loadPizze(stringaDiRicerca);
+        }
+        function loadPizze(searchString) {
+            debugger;
+            axios.get('/api/Pizze', { params: { search: searchString } })
+            
+            
 
-                axios.get('/api/Pizze', { params: { search: searchString }})
-                
-                
                 .then((res) => {
 
                     console.log('risultato ok');
                     console.log(res);
-                    
+
                     if (res.data.length > 0) {
                         document.getElementById('contenitore_pizze').classList.remove('d-none');
                         document.getElementById('contenitore_no_pizze').classList.add('d-none');
@@ -82,18 +94,19 @@
 
                             document.getElementById('contenitore_pizze').innerHTML +=
                                 `
-                                                        <div class="col-12 col-md-4 p-2">
-                                                            <div class="card post h-100">
-                                                            <a href="/Home/Details/${pizza.id}">
-                                                                <img src="${pizza.immagine}" class="card-img-top" alt="...">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title">${pizza.nome}</h5>
-                                                                    <p class="card-text">${pizza.descrizione}</p>
-                                                                </div>
-                                                            </a>
-                                                            </div>
-                                                        </div>
-                                                        `;
+                                   <div class="col-12 col-md-4 p-2">
+                                   <div class="card post h-100">
+
+                                  <img src="${pizza.immagine}" class="card-img-top" alt="...">
+                                  <div class="card-body">
+                                  <h5 class="card-title">${pizza.nome}</h5>
+                                  <p class="card-text">${pizza.descrizione}</p>
+                                  <button class="btn btn-info py-1 m-2 btn-lg px-1">${pizza.prezzo}</button>
+                                  <a href="/Home/Dettagli/${pizza.id}"class="btn btn-outline-info py-1 m-2 btn-lg px-1">Descrizione</a>
+                                   </div>
+                                  </div>
+                                  </div>
+                                                                        `;
                         });
 
                     } else {
@@ -102,14 +115,12 @@
                         document.getElementById('contenitore_pizze').classList.add('d-none');
 
 
-                    }
-
-                    document.getElementById('spinner-loader').classList.add('d-none');
+                    }                 
                 }).catch((error) => {
                     console.log(error);
                 });
 
-            }
+        }
 
-        </script>
+    </script>
     }
