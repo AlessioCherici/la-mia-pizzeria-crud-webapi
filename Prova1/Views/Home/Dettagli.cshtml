@@ -1,32 +1,85 @@
 ﻿@{
     Layout = "LayoutAxios";  
 }
-
-<div id="descrizione-vuoto"> </div>
-<div id="descrizione"> </div>
-
-@section Scripts{
-    <script type="text/javascript">
-        function pizzaShower()
-        {
-
-        }
-    </script>
- }
-<div class="col-12 col-md-6 col-lg-4">
-    <div class="card mb-5 border">  
-        <img class="card-img-top img-fluid" src="${pizza.immagine}" alt="@Model.Id">
-        <div class="card-body pb-0">
-            <h5 class="text-black text-center">@Model.Nome</h5>
-        </div>
-        <div class="card-body pt-0 text-center">
-            <button type="button" class="btn btn-info py-1 m-2 btn-lg px-1">@Model.Prezzo</button>
-            <a href="@Url.Action("Modifica","Home",new{id=Model.Id})" class="btn btn-warning py-1 m-2 btn-lg px-1">Modifica</a>
-            <a href="@Url.Action("DeletePizza","Home",new{id=Model.Id})" class="btn btn-danger py-1 m-2 btn-lg px-1">Elimina</a>
-            <p>@Model.Categoria.NomeCategoria</p>
-            <p>@Model.Descrizione</p>
+<div class="container align-items-center">
+    <div class="row">
+        <div class="col-12">
+        <div id="descrizione"> </div>
         </div>
     </div>
 </div>
 
+
+@section Scripts{
+    <script type="text/javascript">
+            const id = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
+            axios.get(`/api/Pizze/${id}`).then((res)=> {
+                let pizza = res.data;
+                console.log('pizza trovata', pizza);
+                document.getElementById("descrizione").innerHTML += 
+                    `
+                            <div class="col-12 col-md-6 col-lg-4" >
+                                <div class="card mb-5 mt-5 border" >
+                                    <img class="card-img-top img-fluid" src = "${pizza.immagine}" alt = "${pizza.id}" >
+                                        <div class="card-body pb-0" >
+                                            <h5 class="text-black text-center" > ${pizza.nome}</h5>
+                                                </div>
+                                                <div class="card-body pt-0 text-center" >
+                                                    <button type="button" class="btn btn-info py-1 m-2 btn-lg px-1" > ${pizza.prezzo}</button>
+                                                        <a href = "/Home/Modifica/${pizza.id}" class="btn btn-warning py-1 m-2 btn-lg px-1" > Modifica </a>
+                                                            <a href = "google.com" class="btn btn-danger py-1 m-2 btn-lg px-1"> Elimina </a>
+                                                                <p> ${pizza.categoria.nomeCategoria}</p>
+                                                                <p> ${pizza.descrizione}</p>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                   ` ;
+            }
+            )
+    </script>
+ }
+
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <h1>Suona una fisarmonica, Fiamme nel campo rom</h1>
+<h1>ciao artyom</h1>
+    <h1>DAJE ROMA</h1>
+    <h1>FORZA ALEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</h1>
+    <h1>FORZA NAPOLIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</h1>
